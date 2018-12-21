@@ -6,6 +6,9 @@ Rails.application.routes.draw do
     # when creating or destroying comments, they will add or delete a specific comment belonging to a specific post
   end
 
+  resources :users, only: [:new, :create]
+  resource :session, only:[:new, :create, :edit, :update, :destroy]
+
   get("/", to:"posts#index", as: :root)
   # post("/posts", to:"posts#udpate")
 

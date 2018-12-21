@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+    before_action :authenticated_user!
     def create
         # render json: params
         @comment = Comment.new comment_params
