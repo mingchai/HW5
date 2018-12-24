@@ -8,24 +8,11 @@
 Post.destroy_all
 Comment.destroy_all
 User.destroy_all
+users = User.all
 
 ActiveRecord::Base.connection.reset_pk_sequence!('posts')
 ActiveRecord::Base.connection.reset_pk_sequence!('comments')
 ActiveRecord::Base.connection.reset_pk_sequence!('users')
-
-50.times do
-    p = Post.create(
-        title:Faker::Lovecraft.sentence(1),
-        body: Faker::Lovecraft.paragraph(1)
-    )
-    if p.valid?
-        rand(1..15).times do
-            p.comments << Comment.new( #comments to be associated with the post
-                body:Faker::Company.bs
-            )
-        end
-    end
-end
 
 100.times do
     User.create(
@@ -35,9 +22,27 @@ end
     )
 end
 
+50.times do
+    p = Post.create(
+        title:Faker::Bank.account_number,
+        body: Faker::Lovecraft.paragraph(1),
+        user: users.sample
+    )
+    if p.valid?
+        rand(1..15).times do
+            p.comments << Comment.new( #comments to be associated with the post
+                body:Faker::Company.bs,
+                user: users.sample
+            )
+        end
+    end
+end
+
+
+
 posts = Post.all
 comments = Comment.all
-users = User.all
+
 puts "#{posts.count} posts were created"
 puts "#{comments.count} comments were created"
 puts "#{users.count} users were created"

@@ -13,18 +13,19 @@
   <%= link_to 'Blog On Rails', root_path, class:"navbar-brand text-primary" %>
 <header class="form-inline">
   <%= link_to 'Home', root_path, class:"mr-3" %>
-  | 
-  <%= link_to 'New Post', new_post_path, class:"mr-3 ml-3" %>
-  |
+   
+  
   <% if signed_in?%>
+  <%= link_to 'New Post', new_post_path, class:"mr-3 ml-3" %>
+  
   <span class="mr-3 ml-3">
-  Hello, <%= current_user.name %>!
+  Hello, <%= link_to current_user.name, edit_user_path(current_user.id) %>!
   </span>
-  |
+  
   <%= link_to 'Sign Out', session_path, method: :delete, class:"mr-3 ml-3" %>
   <% else %>
   <%= link_to 'Sign Up', new_user_path, class:"mr-3 ml-3" %>
-  |
+  
   <%= link_to 'Sign In', new_session_path, class:"mr-3 ml-3" %>
   <% end %>
   </header>

@@ -3,6 +3,8 @@ class CommentsController < ApplicationController
     def create
         # render json: params
         @comment = Comment.new comment_params
+        @comment.user = current_user
+        # each comment needs a user, so we need to specify this
         @post = Post.find params[:post_id]
         # render json: params[:post_id]
         @comment.post = @post
@@ -11,11 +13,12 @@ class CommentsController < ApplicationController
         else
             render "posts/show"
         end
+
         @comment.save
     end
 
     def destroy
-        @comment = Comment.find params[:post_id]
+        @comment = Comment.find params[:id]
         @comment.destroy
         redirect_to post_path(@comment.post)
     end

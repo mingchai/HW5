@@ -4,8 +4,10 @@
 <small>Posted <%= time_ago_in_words(@post.created_at)%> ago</small>
 </p>
 <br>
+<% if can?(:crud, @post) %>
 <%= link_to 'Edit', edit_post_path, class: "btn btn-outline-primary" %>
 <%= link_to 'Delete', post_path, method: :delete, data: {confirm: "Are you sure you want to delete this post?"}, class: "btn btn-outline-primary" %>
+<% end %>
 
 <hr>
 
@@ -31,8 +33,9 @@
         <%= comment.body %>
         <br>
         <small><%= time_ago_in_words(comment.created_at)%></small>
-        
-        <%= link_to 'Delete', post_comment_path(comment.id), method: :delete, data: {confirm: "Delete Comment?"} %>
+        <%# if can?(:crud, comment)%>
+        <%= link_to 'Delete', post_comment_path(@post.id, comment.id), method: :delete, data: {confirm: "Delete Comment?"} %>
+        <%# end %>
     </li>
 <% end %>
 </ul>
