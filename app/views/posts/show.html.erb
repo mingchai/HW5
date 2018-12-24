@@ -33,9 +33,9 @@
         <%= comment.body %>
         <br>
         <small><%= time_ago_in_words(comment.created_at)%></small>
-        <%# if can?(:crud, comment)%>
+        <% if can?(:crud, comment)%>
         <%= link_to 'Delete', post_comment_path(@post.id, comment.id), method: :delete, data: {confirm: "Delete Comment?"} %>
-        <%# end %>
+        <% end %>
     </li>
 <% end %>
 </ul>
