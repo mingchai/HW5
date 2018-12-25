@@ -1,12 +1,21 @@
-// .card {
-// background-color: black;
-// color: green;
-// }
+html{
+    --spacer: 10px;
+}
 
-// body {
-//     background-color: black;
-// }
+@media (min-width: 576px) {
+    .card{
+        width: calc(100% - 2*var(--spacer));
+    }
+ }
 
-// h1, hr, div, main{
-//     color: green;
-// }
+@media (min-width: 768px) { 
+    .card{
+        width: calc(100%/2 - 2*var(--spacer));
+    }
+ }
+
+@media (min-width: 992px) { 
+    .card{
+        width: calc(100%/3 - 2*var(--spacer));
+    }
+ }

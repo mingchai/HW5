@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>BlogOnRails</title>
+    
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -36,7 +37,7 @@
     <%flash.each do |type, message|%>
     <h4><%= message %></h4>
     <% end %>
-  <body class="m-4">
+  <body class="m-3">
     <%= yield %>
   </body>
 </html>
